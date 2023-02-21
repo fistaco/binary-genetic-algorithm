@@ -12,10 +12,20 @@ float Genome::getFitness()
 
 Genome* Genome::random()
 {
-	return &Genome();
+	return new Genome();
+}
+
+Genome* Genome::mutate()
+{
+	return nullptr;
+}
+
+std::pair<Genome*, Genome*> Genome::crossover(Genome* other)
+{
+	return std::pair<Genome*, Genome*>();
 }
 
 float Genome::computeFitness()
 {
-	return 0.0f;
+	return 777.0f;
 }

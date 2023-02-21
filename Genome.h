@@ -1,4 +1,5 @@
 #pragma once
+#include <utility>
 class Genome
 {
 public:
@@ -7,6 +8,9 @@ public:
 	float getFitness();
 
 	virtual Genome* random();
+
+	virtual Genome* mutate();
+	virtual std::pair<Genome*, Genome*> crossover(Genome* other);
 
 private:
 	virtual float computeFitness();

@@ -2,7 +2,9 @@
 //
 
 #include <iostream>
+#include <string>
 #include "GeneticAlgorithm.h"
+#include "BinaryString.h"
 
 int main()
 {
