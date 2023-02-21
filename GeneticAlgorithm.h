@@ -7,6 +7,7 @@ public:
 	GeneticAlgorithm(int popSize);
 
 	void run();
+
 private:
 	void initialisePopulation(int popSize);
 	void evaluateFitness();

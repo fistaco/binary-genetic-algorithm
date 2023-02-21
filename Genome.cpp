@@ -7,12 +7,12 @@ Genome::Genome(float defaultFitness)
 
 float Genome::getFitness()
 {
-	return 0.0f;
+	return mFitness;
 }
 
-Genome Genome::random()
+Genome* Genome::random()
 {
-	return Genome();
+	return &Genome();
 }
 
 float Genome::computeFitness()

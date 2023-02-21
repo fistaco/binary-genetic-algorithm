@@ -6,7 +6,8 @@ public:
 
 	float getFitness();
 
-	virtual Genome random();
+	virtual Genome* random();
+
 private:
 	virtual float computeFitness();
 
