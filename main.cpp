@@ -2,10 +2,14 @@
 //
 
 #include <iostream>
+#include "GeneticAlgorithm.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int popSize = 3;
+
+    GeneticAlgorithm* ga = new GeneticAlgorithm(popSize);
+    ga->run();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

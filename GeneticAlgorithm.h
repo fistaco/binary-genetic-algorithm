@@ -4,6 +4,8 @@
 class GeneticAlgorithm
 {
 public:
+	GeneticAlgorithm(int popSize);
+
 	void run();
 private:
 	void initialisePopulation(int popSize);
@@ -12,5 +14,7 @@ private:
 	virtual Genome* produceOffspring();
 
 	Genome* tournamentSelect();
+
+	Genome* mPopulation;
 };
 

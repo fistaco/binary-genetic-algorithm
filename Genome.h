@@ -2,7 +2,7 @@
 class Genome
 {
 public:
-	Genome();
+	Genome(float defaultFitness = 0);
 
 	float getFitness();
 
