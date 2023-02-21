@@ -1,10 +1,17 @@
 #include "BinaryString.h"
 #include <cstdlib>
+#include <vector>
 
 BinaryString::BinaryString(int length, float defaultFitness)
 {
     mFitness = defaultFitness;
-    mBits = new int[length]; // Stores the binary string
+
+    // Initialise the list of bits with zeroes
+    mBits.reserve(length);
+    for (int i = 0; i < length; i++)
+    {
+        mBits.push_back(0);
+    }
 }
 
 float BinaryString::getFitness()
@@ -28,9 +35,14 @@ BinaryString* BinaryString::random(int length)
     return binString;
 }
 
+/// <summary>
+/// Randomly modifies this BinaryString by flipping one of its bits.
+/// </summary>
+/// <returns></returns>
 BinaryString* BinaryString::mutate()
 {
-    return nullptr;
+    int i = std::rand() % this->mBits.size();
+    this->mBits[i] ^= 1;  // 0 XOR 1 == 1; 1 XOR 1 == 0
 }
 
 std::pair<BinaryString*, BinaryString*> BinaryString::crossover(BinaryString* other)

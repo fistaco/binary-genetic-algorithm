@@ -1,6 +1,8 @@
 #pragma once
 #include <utility>
+#include <vector>
 #include "Genome.h"
+
 class BinaryString : public Genome
 {
 public:
@@ -16,6 +18,6 @@ public:
 private:
 	float mFitness;
 
-	int* mBits;
+	std::vector<int> mBits; // Stores the binary string
 };
 
