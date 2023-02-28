@@ -3,44 +3,44 @@
 #include <iostream>
 #include "BinaryString.h"
 
-template <class genomeType>
-GeneticAlgorithm<genomeType>::GeneticAlgorithm(int popSize)
+GeneticAlgorithm::GeneticAlgorithm(int popSize)
 {
-	mPopulation = new Genome[popSize];
+	mPopulation = new Genome*[popSize];
+	mPopSize = popSize;
 }
 
-template <class genomeType>
-void GeneticAlgorithm<genomeType>::run()
+void GeneticAlgorithm::run()
 {
 	std::cout << "Starting GA.\n";
 	return;
 }
 
-template <class genomeType>
-void GeneticAlgorithm<genomeType>::initialisePopulation(int popSize)
+void GeneticAlgorithm::evaluateFitness()
 {
-	return;
+	for (int i = 0; i < mPopSize; i++)
+	{
+		mPopulation[i]->computeFitness(); // Should also set each genome's mFitness member variable
+	}
 }
 
-template <class genomeType>
-void GeneticAlgorithm<genomeType>::evaluateFitness()
+Genome** GeneticAlgorithm::selectGenomes()
 {
+	return this->tournamentSelect(3); // TODO: Implement selection method polymorphism
 }
 
-template <class genomeType>
-genomeType* GeneticAlgorithm<genomeType>::selectGenomes()
+Genome** GeneticAlgorithm::produceOffspring()
 {
 	return nullptr;
 }
 
-template <class genomeType>
-genomeType* GeneticAlgorithm<genomeType>::produceOffspring()
+/// <summary>
+/// Selects and returns the top performing genomes in the population by repeatedly performing fitness-based tournaments
+/// among randomly chosen groups of genomes.
+/// </summary>
+/// <returns></returns>
+Genome** GeneticAlgorithm::tournamentSelect(int tournamentSize)
 {
-	return nullptr;
-}
+	int numGenomes = (int)(mPopSize / 2);
 
-template <class genomeType>
-genomeType* GeneticAlgorithm<genomeType>::tournamentSelect()
-{
-	return nullptr;
+	return nullptr; // TODO: Proper return value
 }
