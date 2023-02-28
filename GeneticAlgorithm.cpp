@@ -1,37 +1,46 @@
 #include "GeneticAlgorithm.h"
 #include "Genome.h"
 #include <iostream>
+#include "BinaryString.h"
 
-GeneticAlgorithm::GeneticAlgorithm(int popSize)
+template <class genomeType>
+GeneticAlgorithm<genomeType>::GeneticAlgorithm(int popSize)
 {
 	mPopulation = new Genome[popSize];
 }
 
-void GeneticAlgorithm::run()
+template <class genomeType>
+void GeneticAlgorithm<genomeType>::run()
 {
 	std::cout << "Starting GA.\n";
 	return;
 }
 
-void GeneticAlgorithm::initialisePopulation(int popSize)
+template <class genomeType>
+void GeneticAlgorithm<genomeType>::initialisePopulation(int popSize)
+{
+	return;
+}
+
+template <class genomeType>
+void GeneticAlgorithm<genomeType>::evaluateFitness()
 {
 }
 
-void GeneticAlgorithm::evaluateFitness()
-{
-}
-
-Genome* GeneticAlgorithm::selectGenomes()
+template <class genomeType>
+genomeType* GeneticAlgorithm<genomeType>::selectGenomes()
 {
 	return nullptr;
 }
 
-Genome* GeneticAlgorithm::produceOffspring()
+template <class genomeType>
+genomeType* GeneticAlgorithm<genomeType>::produceOffspring()
 {
 	return nullptr;
 }
 
-Genome* GeneticAlgorithm::tournamentSelect()
+template <class genomeType>
+genomeType* GeneticAlgorithm<genomeType>::tournamentSelect()
 {
 	return nullptr;
 }

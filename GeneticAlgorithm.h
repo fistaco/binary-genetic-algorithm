@@ -1,6 +1,7 @@
 #pragma once
 #include "Genome.h"
 
+template <class genomeType>
 class GeneticAlgorithm
 {
 public:
@@ -11,11 +12,11 @@ public:
 private:
 	void initialisePopulation(int popSize);
 	void evaluateFitness();
-	virtual Genome* selectGenomes();
-	virtual Genome* produceOffspring();
+	genomeType* selectGenomes();
+	genomeType* produceOffspring();
 
-	Genome* tournamentSelect();
+	genomeType* tournamentSelect();
 
-	Genome* mPopulation;
+	genomeType* mPopulation;
 };
 
