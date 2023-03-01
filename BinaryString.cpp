@@ -86,7 +86,14 @@ void BinaryString::mutate()
 /// <returns></returns>
 std::pair<Genome*, Genome*> BinaryString::crossover(Genome* other, CrossoverType crossoverType)
 {
-    return std::pair<BinaryString*, BinaryString*>();
+    if (crossoverType == CrossoverType::OnePoint)
+    {
+        return onePointCrossover((BinaryString*) other);
+    }
+    else if (crossoverType == CrossoverType::Uniform)
+    {
+        return uniformCrossover((BinaryString*) other);
+    }
 }
 
 /// <summary>
