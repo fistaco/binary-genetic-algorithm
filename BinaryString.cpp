@@ -1,8 +1,9 @@
-#include "BinaryString.h"
 #include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
+#include "BinaryString.h"
+#include "CrossoverType.h"
 
 BinaryString::BinaryString(int length, float defaultFitness)
 {
@@ -69,7 +70,12 @@ void BinaryString::mutate()
     this->mBits[i] ^= 1;  // 0 XOR 1 == 1; 1 XOR 1 == 0
 }
 
-std::pair<Genome*, Genome*> BinaryString::crossover(Genome* other)
+/// <summary>
+/// Performs crossover by taking
+/// </summary>
+/// <param name="other"></param>
+/// <returns></returns>
+std::pair<Genome*, Genome*> BinaryString::crossover(Genome* other, CrossoverType crossoverType)
 {
     return std::pair<BinaryString*, BinaryString*>();
 }

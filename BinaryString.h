@@ -1,6 +1,7 @@
 #pragma once
 #include <utility>
 #include <vector>
+#include "CrossoverType.h"
 #include "Genome.h"
 
 class BinaryString : public Genome
@@ -15,7 +16,7 @@ public:
 	static BinaryString* random(int length);
 
 	void mutate() override;
-	std::pair<Genome*, Genome*> crossover(Genome* other) override;
+	std::pair<Genome*, Genome*> crossover(Genome* other, CrossoverType crossoverType) override;
 
 	Genome* clone() override;
 

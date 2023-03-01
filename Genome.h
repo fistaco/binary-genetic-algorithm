@@ -1,5 +1,7 @@
 #pragma once
 #include <utility>
+#include "CrossoverType.h"
+
 class Genome
 {
 public:
@@ -9,7 +11,7 @@ public:
 	float getFitness();
 
 	virtual void mutate() = 0;
-	virtual std::pair<Genome*, Genome*> crossover(Genome* other) = 0;
+	virtual std::pair<Genome*, Genome*> crossover(Genome* other, CrossoverType crossoverType) = 0;
 
 	virtual Genome* clone() = 0;
 protected:
