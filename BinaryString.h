@@ -12,11 +12,14 @@ public:
 
 	float computeFitness() override;
 	float getFitness();
+	std::vector<int> getBits();
 
 	static BinaryString* random(int length);
 
 	void mutate() override;
 	std::pair<Genome*, Genome*> crossover(Genome* other, CrossoverType crossoverType) override;
+	std::pair<Genome*, Genome*> onePointCrossover(BinaryString* other);
+	std::pair<Genome*, Genome*> uniformCrossover(BinaryString* other);
 
 	Genome* clone() override;
 
