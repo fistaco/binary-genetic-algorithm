@@ -4,15 +4,29 @@
 #include <iostream>
 #include "BinaryString.h"
 
-GeneticAlgorithm::GeneticAlgorithm(int popSize)
+GeneticAlgorithm::GeneticAlgorithm(int popSize, int gens)
 {
 	mPopulation = new Genome*[popSize];
 	mPopSize = popSize;
+	mGens = gens;
 }
 
 void GeneticAlgorithm::run()
 {
 	std::cout << "Starting GA.\n";
+
+	this->initialisePopulation();
+
+	int gen = 0;
+	while (gen < mGens)
+	{
+		this->evaluateFitness();
+
+		this->selectGenomes(); // TODO: In the method call, select genomes in-place in the population
+
+		gen++;
+	}
+
 	return;
 }
 

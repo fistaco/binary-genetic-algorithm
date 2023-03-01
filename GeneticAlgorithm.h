@@ -5,7 +5,7 @@
 class GeneticAlgorithm
 {
 public:
-	GeneticAlgorithm(int popSize);
+	GeneticAlgorithm(int popSize, int gens);
 
 	void run();
 
@@ -19,4 +19,6 @@ private:
 
 	Genome** mPopulation; // An array of pointers to polymorphic Genome objects
 	int mPopSize;
+
+	int mGens; // The maximum number of generations
 };
