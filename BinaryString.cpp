@@ -4,9 +4,10 @@
 
 BinaryString::BinaryString(int length, float defaultFitness)
 {
+    mLength = length;
     mFitness = defaultFitness;
 
-    // Initialise the list of bits with zeroes
+    // Initialise the list of bits with zeros
     mBits.reserve(length);
     for (int i = 0; i < length; i++)
     {
@@ -39,13 +40,23 @@ BinaryString* BinaryString::random(int length)
 /// Randomly modifies this BinaryString by flipping one of its bits.
 /// </summary>
 /// <returns></returns>
-BinaryString* BinaryString::mutate()
+void BinaryString::mutate()
 {
     int i = std::rand() % this->mBits.size();
     this->mBits[i] ^= 1;  // 0 XOR 1 == 1; 1 XOR 1 == 0
 }
 
-std::pair<BinaryString*, BinaryString*> BinaryString::crossover(BinaryString* other)
+std::pair<Genome*, Genome*> BinaryString::crossover(Genome* other)
 {
     return std::pair<BinaryString*, BinaryString*>();
+}
+
+Genome* BinaryString::clone()
+{
+    return nullptr;
+}
+
+float BinaryString::computeFitness()
+{
+    return 0.0f;
 }

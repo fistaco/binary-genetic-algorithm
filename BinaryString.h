@@ -6,16 +6,21 @@
 class BinaryString : public Genome
 {
 public:
-	BinaryString(int length, float defaultFitness = 0);
+	BinaryString(int length, float defaultFitness = 0); // Constructor for a binary string of zeros
 
 	float getFitness();
 
 	static BinaryString* random(int length);
 
-	BinaryString* mutate();
-	std::pair<BinaryString*, BinaryString*> crossover(BinaryString* other);
+	void mutate() override;
+	std::pair<Genome*, Genome*> crossover(Genome* other) override;
+
+	Genome* clone() override;
 
 private:
+	float computeFitness() override;
+
+	int mLength;
 	float mFitness;
 
 	std::vector<int> mBits; // Stores the binary string
