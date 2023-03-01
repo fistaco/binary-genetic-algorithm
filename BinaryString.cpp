@@ -1,5 +1,7 @@
 #include "BinaryString.h"
 #include <cstdlib>
+#include <iostream>
+#include <string>
 #include <vector>
 
 BinaryString::BinaryString(int length, float defaultFitness)
@@ -54,6 +56,18 @@ std::pair<Genome*, Genome*> BinaryString::crossover(Genome* other)
 Genome* BinaryString::clone()
 {
     return nullptr;
+}
+
+/// <summary>
+/// Prints each of the bits in this BinaryString.
+/// </summary>
+void BinaryString::print()
+{
+    for (int bit : mBits)
+    {
+        std::cout << std::to_string(bit) + " ";
+    }
+    std::cout << "\n";
 }
 
 float BinaryString::computeFitness()

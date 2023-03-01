@@ -17,6 +17,8 @@ public:
 
 	Genome* clone() override;
 
+	void print();
+
 private:
 	float computeFitness() override;
 
