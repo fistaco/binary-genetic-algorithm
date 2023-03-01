@@ -1,14 +1,16 @@
-#include "GeneticAlgorithm.h"
-#include "Genome.h"
 #include <cstdlib>
 #include <iostream>
 #include "BinaryString.h"
+#include "CrossoverType.h"
+#include "GeneticAlgorithm.h"
+#include "Genome.h"
 
-GeneticAlgorithm::GeneticAlgorithm(int popSize, int gens)
+GeneticAlgorithm::GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType)
 {
 	mPopulation = new Genome*[popSize];
 	mPopSize = popSize;
 	mGens = gens;
+	mCrossoverType = crossoverType;
 }
 
 void GeneticAlgorithm::run()
@@ -43,7 +45,7 @@ Genome** GeneticAlgorithm::selectGenomes()
 	return this->tournamentSelect(3); // TODO: Implement selection method polymorphism
 }
 
-Genome** GeneticAlgorithm::produceOffspring()
+Genome** GeneticAlgorithm::produceOffspring(CrossoverType crossoverType)
 {
 	return nullptr;
 }

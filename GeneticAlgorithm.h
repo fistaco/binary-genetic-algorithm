@@ -1,11 +1,12 @@
 #pragma once
 #include <array>
+#include "CrossoverType.h"
 #include "Genome.h"
 
 class GeneticAlgorithm
 {
 public:
-	GeneticAlgorithm(int popSize, int gens);
+	GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType);
 
 	void run();
 
@@ -13,7 +14,7 @@ private:
 	virtual void initialisePopulation() = 0;
 	void evaluateFitness();
 	Genome** selectGenomes();
-	Genome** produceOffspring();
+	Genome** produceOffspring(CrossoverType crossoverType);
 
 	Genome** tournamentSelect(int tournamentSize);
 
@@ -21,4 +22,5 @@ private:
 	int mPopSize;
 
 	int mGens; // The maximum number of generations
+	CrossoverType mCrossoverType;
 };
