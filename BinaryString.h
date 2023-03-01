@@ -7,6 +7,7 @@ class BinaryString : public Genome
 {
 public:
 	BinaryString(int length, float defaultFitness = 0); // Constructor for a binary string of zeros
+	BinaryString(std::vector<int> bits);
 
 	float computeFitness() override;
 	float getFitness();
@@ -21,7 +22,6 @@ public:
 	void print();
 
 private:
-
 	int mLength;
 	float mFitness;
 

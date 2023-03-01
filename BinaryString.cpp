@@ -18,6 +18,23 @@ BinaryString::BinaryString(int length, float defaultFitness)
 }
 
 /// <summary>
+/// Constructs a new BinaryString by deep copying the given bit array.
+/// </summary>
+/// <param name="bits"></param>
+BinaryString::BinaryString(std::vector<int> bits)
+{
+    mLength = bits.size();
+
+    mBits.reserve(mLength);
+    for (int bit: bits)
+    {
+        mBits.push_back(bit);
+    }
+
+    mFitness = computeFitness();
+}
+
+/// <summary>
 /// Returns this genome's fitness value. This method assumes that computeFitness() has been called already.
 /// </summary>
 /// <returns></returns>
@@ -59,7 +76,8 @@ std::pair<Genome*, Genome*> BinaryString::crossover(Genome* other)
 
 Genome* BinaryString::clone()
 {
-    return nullptr;
+    BinaryString* clone = new BinaryString(mBits);
+    return clone;
 }
 
 /// <summary>
