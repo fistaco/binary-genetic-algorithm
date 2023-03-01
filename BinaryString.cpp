@@ -17,6 +17,10 @@ BinaryString::BinaryString(int length, float defaultFitness)
     }
 }
 
+/// <summary>
+/// Returns this genome's fitness value. This method assumes that computeFitness() has been called already.
+/// </summary>
+/// <returns></returns>
 float BinaryString::getFitness()
 {
     // TODO: Experiment with calling the inherited getFitness() method so we don't have to implement this one at all
@@ -70,7 +74,18 @@ void BinaryString::print()
     std::cout << "\n";
 }
 
+/// <summary>
+/// Computes and returns this BinaryString's fitness as the number of bits set to 1, i.e., its Hamming weight.
+/// </summary>
+/// <returns></returns>
 float BinaryString::computeFitness()
 {
-    return 0.0f;
+    float fitness = 0.0f;
+    for (int bit : mBits)
+    {
+        fitness += (float) bit;
+    }
+
+    this->mFitness = fitness;
+    return fitness;
 }

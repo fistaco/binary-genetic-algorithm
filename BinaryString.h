@@ -8,6 +8,7 @@ class BinaryString : public Genome
 public:
 	BinaryString(int length, float defaultFitness = 0); // Constructor for a binary string of zeros
 
+	float computeFitness() override;
 	float getFitness();
 
 	static BinaryString* random(int length);
@@ -20,7 +21,6 @@ public:
 	void print();
 
 private:
-	float computeFitness() override;
 
 	int mLength;
 	float mFitness;
