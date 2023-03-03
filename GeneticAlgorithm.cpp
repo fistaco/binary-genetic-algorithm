@@ -53,7 +53,7 @@ void GeneticAlgorithm::evaluateFitness()
 	}
 }
 
-Genome** GeneticAlgorithm::selectGenomes()
+void GeneticAlgorithm::selectGenomes()
 {
 	return this->tournamentSelect(3); // TODO: Implement selection method polymorphism
 }
@@ -64,7 +64,7 @@ Genome** GeneticAlgorithm::selectGenomes()
 /// </summary>
 /// <param name="crossoverType"></param>
 /// <returns></returns>
-Genome** GeneticAlgorithm::produceOffspring(CrossoverType crossoverType)
+void GeneticAlgorithm::produceOffspring(CrossoverType crossoverType)
 {
 	int halfPopSize = (int) (mPopSize / 2); // Parents are in the first half of the population, offspring in the second
 	float r;
@@ -96,8 +96,6 @@ Genome** GeneticAlgorithm::produceOffspring(CrossoverType crossoverType)
 			mPopulation[i]->mutate();
 		}
 	}
-
-	return nullptr; // TODO: Just use a void function and insert offspring in-place in the population
 }
 
 /// <summary>
@@ -107,7 +105,7 @@ Genome** GeneticAlgorithm::produceOffspring(CrossoverType crossoverType)
 /// This method assumes larger fitness values are better than smaller ones.
 /// </summary>
 /// <returns></returns>
-Genome** GeneticAlgorithm::tournamentSelect(int tournamentSize = 3)
+void GeneticAlgorithm::tournamentSelect(int tournamentSize = 3)
 {
 	int numGenomes = (int)(mPopSize / 2); // Note that this always results in an even number of selected parents
 	Genome** selectedGenomes = new Genome*[numGenomes];
@@ -130,8 +128,6 @@ Genome** GeneticAlgorithm::tournamentSelect(int tournamentSize = 3)
 			selectedGenomes[i] = winner;
 		}
 	}
-
-	return selectedGenomes;
 }
 
 /// <summary>

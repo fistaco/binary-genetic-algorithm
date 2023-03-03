@@ -13,10 +13,10 @@ public:
 private:
 	virtual void initialisePopulation() = 0;
 	void evaluateFitness();
-	Genome** selectGenomes();
-	Genome** produceOffspring(CrossoverType crossoverType);
+	void selectGenomes();
+	void produceOffspring(CrossoverType crossoverType);
 
-	Genome** tournamentSelect(int tournamentSize);
+	void tournamentSelect(int tournamentSize);
 
 	Genome* findBestGenome();
 
