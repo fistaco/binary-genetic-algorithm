@@ -22,7 +22,7 @@ BinaryString::BinaryString(int length, float defaultFitness)
 /// Constructs a new BinaryString by deep copying the given bit array.
 /// </summary>
 /// <param name="bits"></param>
-BinaryString::BinaryString(std::vector<int> bits)
+BinaryString::BinaryString(const std::vector<int>& bits)
 {
     mLength = bits.size();
 
