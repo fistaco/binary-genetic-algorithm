@@ -14,6 +14,8 @@ public:
 	virtual std::pair<Genome*, Genome*> crossover(Genome* other, CrossoverType crossoverType) = 0;
 
 	virtual Genome* clone() = 0;
+
+	virtual void print() = 0;
 protected:
 	float mFitness;
 };
