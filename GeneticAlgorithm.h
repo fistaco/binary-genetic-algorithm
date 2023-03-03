@@ -2,16 +2,25 @@
 #include <array>
 #include "CrossoverType.h"
 #include "Genome.h"
+#include <vector>
 
 class GeneticAlgorithm
 {
 public:
 	GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType, float crossoverRate, float mutationRate, float optimalFitness);
 
-	void run();
+	template <class GenomeType, class... Args>
+	void run(Args... genomeInitParams)
+	{
+		for (int i = 0; i < mPopSize; i++)
+		{
+			mPopulation[i] = GenomeType::random(genomeInitParams...);
+		}
+		this->run();
+	}
 
 private:
-	virtual void initialisePopulation() = 0;
+	void run();
 	void evaluateFitness();
 	void selectGenomes();
 	void produceOffspring(CrossoverType crossoverType);

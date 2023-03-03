@@ -20,8 +20,6 @@ void GeneticAlgorithm::run()
 {
 	std::cout << "Starting GA.\n";
 
-	this->initialisePopulation();
-
 	int gen = 0;
 	float bestFitness = 0.0f;
 	Genome* bestGenome = nullptr;
@@ -29,16 +27,17 @@ void GeneticAlgorithm::run()
 	while (gen < mGens && bestFitness != mOptimalFitness)
 	{
 		this->evaluateFitness();
-		bestGenome = this->findBestGenome();
+		bestGenome = this->findBestGenome()->clone();
 		bestFitness = bestGenome->getFitness();
 
-		this->selectGenomes(); // TODO: In the method call, select genomes in-place in the population
+		this->selectGenomes();
 		this->produceOffspring(mCrossoverType);
 
+		std::cout << "Best fitness in gen " << gen << ": " << bestFitness << "\n";
 		gen++;
 	}
 
-	std::cout << "GA terminated after generation " << gen << ".\n";
+	std::cout << "GA terminated after generation " << gen - 1 << ".\n";
 	std::cout << "Best genome: ";
 	bestGenome->print();
 
@@ -55,7 +54,7 @@ void GeneticAlgorithm::evaluateFitness()
 
 void GeneticAlgorithm::selectGenomes()
 {
-	return this->tournamentSelect(3); // TODO: Implement selection method polymorphism
+	this->tournamentSelect(3); // TODO: Implement selection method polymorphism
 }
 
 /// <summary>
@@ -77,7 +76,7 @@ void GeneticAlgorithm::produceOffspring(CrossoverType crossoverType)
 		// Use parents as children in case crossover is not applied
 		std::pair<Genome*, Genome*> children = std::pair<Genome*, Genome*>(parent0, parent1);
 
-		r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		r = (float) (rand()) / (float) (RAND_MAX);
 		if (r < mCrossoverRate)
 		{
 			children = parent0->crossover(parent1, crossoverType);
