@@ -28,7 +28,7 @@ public class GeneticAlgorithm {
         this.random = new Random();
     }
 
-    public void run() {
+    public void run() throws Exception {
         this.initialisePopulation();
 
         Genome bestGenome = this.population[0];
