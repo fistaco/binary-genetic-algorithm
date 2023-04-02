@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class GeneticAlgorithm {
 
     private int popSize;
@@ -9,6 +11,8 @@ public class GeneticAlgorithm {
 
     private Genome[] population;
 
+    private Random random;
+
     public GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType, float crossoverRate, float mutationRate, float optimalFitness) {
         this.popSize = popSize;
         this.gens = gens;
@@ -18,6 +22,8 @@ public class GeneticAlgorithm {
         this.optimalFitness = optimalFitness;
 
         this.population = new Genome[popSize];
+
+        this.random = new Random();
     }
 
     public void run() {
@@ -63,6 +69,42 @@ public class GeneticAlgorithm {
         this.tournamentSelect(3);
     }
 
+    
+    /**
+     * Selects fit genomes through repeated fitness-based tournaments of {@code tournamentSize}
+     * randomly chosen genomes. 
+     * 
+     * @param tournamentSize
+     */
+    private void tournamentSelect(int tournamentSize) {
+        int halfPopSize = this.popSize/2;
+        Genome[] selectedGenomes = new Genome[halfPopSize]; // Store winners until selection is over
+
+        // Hold tournaments until half of the population is filled
+        for (int i = 0; i < halfPopSize; i++) {
+            float bestFitness = -1.0f;
+            Genome winner = null;
+
+            // Randomly choose 3 participants and compare their fitness values
+            for (int j = 0; j < tournamentSize; j++) {
+                Genome participant = this.population[this.random.nextInt(this.popSize)];
+                float fitness = participant.getFitness();
+
+                if (fitness > bestFitness) {
+                    bestFitness = fitness;
+                    winner = participant;
+                }
+            }
+
+            selectedGenomes[i] = winner;
+        }
+
+        // Replace the top half of the population with the winners
+        for (int i = 0; i < halfPopSize; i ++) {
+            this.population[i] = selectedGenomes[i];
+        }
+    }
+
     /**
      * Produces offspring according to the chosen crossover type for this GA by using the parent
      * genomes that we assume to be in the first half of the population. The offspring is then
@@ -72,16 +114,5 @@ public class GeneticAlgorithm {
      */
 	private void produceOffspring() {
     }
-
-    /**
-     * Selects fit genomes through repeated fitness-based tournaments of {@code tournamentSize}
-     * randomly chosen genomes. 
-     * 
-     * @param tournamentSize
-     */
-	private void tournamentSelect(int tournamentSize) {
-
-    }
-
 
 }
