@@ -45,6 +45,7 @@ public class GeneticAlgorithm {
             this.evaluateFitness();
             bestGenome = this.getBestGenome();
             bestFitness = bestGenome.getFitness();
+            System.out.println(String.format("Best fitness in generation %d: %f", gen, bestFitness));
             if (bestFitness == optimalFitness) {  // Stop early if we've reached our objective
                 break;
             }
