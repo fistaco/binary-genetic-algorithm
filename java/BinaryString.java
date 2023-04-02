@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 
+/**
+ * Represents a binary string by tracking a fixed-size array of integers that are assumed to be
+ * either 0 or 1.
+ */
 public class BinaryString extends Genome {
 
     public int[] bits;
@@ -122,9 +126,18 @@ public class BinaryString extends Genome {
         return binString;
     }
 
+    /**
+     * Computes and sets this binary string's fitness as the number of its bits that are set to 1.
+     */
     @Override
     public float computeFitness() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'computeFitness'");
+        float fitness = 0.0f;
+
+        for (int i : bits) {
+            fitness += i;
+        }
+
+        this.setFitness(fitness);
+        return fitness;
     }
 }
