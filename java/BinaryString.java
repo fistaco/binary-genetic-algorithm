@@ -107,8 +107,11 @@ public class BinaryString extends Genome {
 
     @Override
     public void print() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'print'");
+        System.out.print("[");
+        for (int i : bits) {
+            System.out.print(i + " ");
+        }
+        System.out.print("]\n");
     }
     
     /**
