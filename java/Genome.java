@@ -14,7 +14,7 @@ public abstract class Genome {
     }
     
     public abstract void mutate();
-    public abstract ArrayList<Genome> crossover(Genome other);
+    public abstract ArrayList<Genome> crossover(Genome other, CrossoverType crossoverType) throws Exception;
 
     public abstract Genome clone();
 
