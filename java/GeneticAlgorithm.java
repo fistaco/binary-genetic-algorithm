@@ -14,8 +14,11 @@ public class GeneticAlgorithm {
     private Genome[] population;
 
     private Random random;
+    private GenomeFactory genomeFactory;
+    private GenomeType genomeType;
 
-    public GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType, double crossoverRate, double mutationRate, float optimalFitness) {
+    public GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType, double crossoverRate,
+                            double mutationRate, float optimalFitness, GenomeType genomeType) {
         this.popSize = popSize;
         this.gens = gens;
         this.crossoverType = crossoverType;
@@ -26,10 +29,12 @@ public class GeneticAlgorithm {
         this.population = new Genome[popSize];
 
         this.random = new Random();
+        this.genomeFactory = new GenomeFactory(this.random);
+        this.genomeType = genomeType;
     }
 
-    public void run() throws Exception {
-        this.initialisePopulation();
+    public void run(List<Object> genomeInitialisationArgs) throws Exception {
+        this.initialisePopulation(genomeInitialisationArgs);
 
         Genome bestGenome = this.population[0];
         float bestFitness = 0.0f;  // Assume fitness maximisation
@@ -50,8 +55,16 @@ public class GeneticAlgorithm {
         bestGenome.print();
     }
 
-    private void initialisePopulation() {
-
+    /**
+     * Initialises the population by randomly constructing genomes in this instance's {@code genomeFactory}
+     * according to the given genome initialisation arguments amd the desired {@code genomeType}.
+     * 
+     * @param initialisationArgs
+     */
+    private void initialisePopulation(List<Object> initialisationArgs) {
+        for (int i = 0; i < this.popSize; i++) {
+            this.population[i] = this.genomeFactory.randomGenome(this.genomeType, initialisationArgs);
+        }
     }
 
     /**
