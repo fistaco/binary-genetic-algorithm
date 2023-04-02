@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GeneticAlgorithm {
@@ -5,15 +7,15 @@ public class GeneticAlgorithm {
     private int popSize;
     private int gens;
     private CrossoverType crossoverType;
-    private float crossoverRate;
-    private float mutationRate;
+    private double crossoverRate;
+    private double mutationRate;
     private float optimalFitness;
 
     private Genome[] population;
 
     private Random random;
 
-    public GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType, float crossoverRate, float mutationRate, float optimalFitness) {
+    public GeneticAlgorithm(int popSize, int gens, CrossoverType crossoverType, double crossoverRate, double mutationRate, float optimalFitness) {
         this.popSize = popSize;
         this.gens = gens;
         this.crossoverType = crossoverType;
@@ -112,7 +114,32 @@ public class GeneticAlgorithm {
      * 
      * @param crossoverType
      */
-	private void produceOffspring() {
+	private void produceOffspring() throws Exception {
+        // Store offspring in the second half of the population in pairs of two
+        for (int i = this.popSize/2; i < this.popSize; i += 2) {
+            // Choose two random parents from the top half of the population
+            Genome parent0 = this.population[this.random.nextInt(this.popSize/2)];
+            Genome parent1 = this.population[this.random.nextInt(this.popSize/2)];
+            ArrayList<Genome> children;
+
+            // Apply crossover and mutation with the given probabilities
+            double r = this.random.nextDouble();
+            if (r < this.crossoverRate) {
+                children = parent0.crossover(parent1, crossoverType);
+            }
+            else {
+                // If crossover is not applied, use the unmodified parents as children
+                children = new ArrayList<Genome>(List.of(parent0.clone(), parent1.clone()));
+            }
+
+            if (r < this.mutationRate) {
+                children.get(0).mutate();
+                children.get(1).mutate();
+            }
+
+            this.population[i] = children.get(0);
+            this.population[i + 1] = children.get(1);
+        }
     }
 
 }
