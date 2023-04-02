@@ -43,6 +43,12 @@ public class GeneticAlgorithm {
         while (gen < this.gens) {
             // Evaluate fitness values and track the best genome
             this.evaluateFitness();
+            bestGenome = this.getBestGenome();
+            bestFitness = bestGenome.getFitness();
+            if (bestFitness == optimalFitness) {  // Stop early if we've reached our objective
+                break;
+            }
+
             this.selectGenomes();
             this.produceOffspring();
 
@@ -74,6 +80,24 @@ public class GeneticAlgorithm {
         for (Genome genome : population) {
             genome.setFitness(genome.computeFitness());
         }
+    }
+
+    /**
+     * Finds and returns the fittest genome in the population.
+     * 
+     * @return
+     */
+    private Genome getBestGenome() {
+        float bestFitness = -1.0f;
+        Genome bestGenome = null;
+
+        for (Genome genome : population) {
+            if (genome.getFitness() > bestFitness) {
+                bestGenome = genome;
+            }
+        }
+
+        return bestGenome;
     }
 
     /**
