@@ -13,7 +13,7 @@ public abstract class Genome {
         this.fitness = fitness;
     }
     
-    public abstract void mutate(float mutationRate);
+    public abstract void mutate();
     public abstract ArrayList<Genome> crossover(Genome other);
 
     public abstract Genome clone();
